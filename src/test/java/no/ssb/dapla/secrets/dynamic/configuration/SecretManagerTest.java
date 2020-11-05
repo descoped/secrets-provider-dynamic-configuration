@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class SecretManagerTest {
 
     @Test
-    void readDynamicSecret() {
+    public void readDynamicSecret() {
         Map<String, String> providerConfiguration = Map.of(
                 "secrets.provider", "dynamic-secret-configuration",
                 "secrets.propertyResourcePath", "application-secret.properties"
