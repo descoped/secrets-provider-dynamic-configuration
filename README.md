@@ -1,0 +1,1 @@
+# dapla-secret-manager-client-provider-dynamic-configuration
