@@ -38,10 +38,10 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/statisticsnorway/dapla-secret-manager-provider-dynamic-configuration.git</connection>
-        <developerConnection>scm:git:git@github.com:statisticsnorway/dapla-secret-manager-provider-dynamic-configuration.git
+        <connection>scm:git:git://github.com/statisticsnorway/dapla-secrets-provider-dynamic-configuration.git</connection>
+        <developerConnection>scm:git:git@github.com:statisticsnorway/dapla-secrets-provider-dynamic-configuration.git
         </developerConnection>
-        <url>https://github.com/statisticsnorway/dapla-secret-manager-provider-dynamic-configuration/tree/master</url>
+        <url>https://github.com/statisticsnorway/dapla-secrets-provider-dynamic-configuration/tree/master</url>
         <tag>HEAD</tag>
     </scm>
 
