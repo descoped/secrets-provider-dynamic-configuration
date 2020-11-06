@@ -4,6 +4,7 @@ import no.ssb.dapla.secrets.api.SecretManagerClient;
 import no.ssb.dapla.secrets.api.SecretManagerClientInitializer;
 import no.ssb.service.provider.api.ProviderName;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,16 +16,19 @@ public class DynamicSecretConfigurationClientInitializer implements SecretManage
         return "dynamic-secret-configuration";
     }
 
+    // Optional: "secrets.propertyResourcePath"
     @Override
     public Set<String> configurationKeys() {
-        return Set.of(
-                "secrets.propertyResourcePath"
-        );
+        return Collections.emptySet();
     }
 
     @Override
     public SecretManagerClient initialize(Map<String, String> configuration) {
         String propertyResourcePath = configuration.get("secrets.propertyResourcePath");
-        return new DynamicSecretConfigurationClient(propertyResourcePath);
+        if (propertyResourcePath != null) {
+            return new DynamicSecretConfigurationClient(propertyResourcePath);
+        } else {
+            return new DynamicSecretConfigurationClient(configuration);
+        }
     }
 }
