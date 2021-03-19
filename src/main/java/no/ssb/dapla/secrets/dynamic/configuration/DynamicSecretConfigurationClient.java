@@ -1,60 +1,42 @@
 package no.ssb.dapla.secrets.dynamic.configuration;
 
-import no.ssb.config.DynamicConfiguration;
 import no.ssb.config.StoreBasedDynamicConfiguration;
 import no.ssb.dapla.secrets.api.SecretManagerClient;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import static java.util.Optional.ofNullable;
 
 public class DynamicSecretConfigurationClient implements SecretManagerClient {
 
-    private final DynamicConfiguration configuration;
+    final Map<String, String> map = new ConcurrentHashMap<>();
 
     public DynamicSecretConfigurationClient(Map<String, String> configuration) {
-        this.configuration = new StoreBasedDynamicConfiguration.Builder()
-                .values(convertMapToKeyValuePairs(configuration))
-                .build();
+        configuration.forEach((key, value) -> map.put(key, Base64.getEncoder().encodeToString(value.getBytes(StandardCharsets.UTF_8))));
     }
 
     public DynamicSecretConfigurationClient(String propertyResourcePath) {
-        configuration = new StoreBasedDynamicConfiguration.Builder()
+        this(new StoreBasedDynamicConfiguration.Builder()
                 .propertiesResource(propertyResourcePath)
-                .build();
-    }
-
-    static String[] convertMapToKeyValuePairs(Map<String, String> map) {
-        List<String> keyValuePair = new ArrayList<>();
-        map.forEach((key, value) -> {
-            keyValuePair.add(key);
-            keyValuePair.add(value);
-        });
-        return keyValuePair.toArray(new String[0]);
-    }
-
-    @Override
-    public String readString(String secretName) {
-        return readString(secretName, null);
-    }
-
-    @Override
-    public String readString(String secretName, String secretVersion) {
-        return configuration.evaluateToString(secretName);
-    }
-
-    @Override
-    public byte[] readBytes(String secretName) {
-        return readBytes(secretName, null);
+                .build()
+                .asMap());
     }
 
     @Override
     public byte[] readBytes(String secretName, String secretVersion) {
-        return configuration.evaluateToString(secretName) != null ? configuration.evaluateToString(secretName).getBytes() : null;
+        return ofNullable(map.get(secretName)).map(s -> Base64.getDecoder().decode(s)).orElse(null);
+    }
+
+    @Override
+    public String addVersion(String secretName, byte[] secretValue) {
+        map.put(secretName, Base64.getEncoder().encodeToString(secretValue));
+        return "latest";
     }
 
     @Override
     public void close() {
-
     }
 }
