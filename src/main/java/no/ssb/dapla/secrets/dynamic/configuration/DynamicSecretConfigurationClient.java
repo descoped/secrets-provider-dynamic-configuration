@@ -46,8 +46,8 @@ public class DynamicSecretConfigurationClient implements SecretManagerClient {
 
     @Override
     public String addVersion(String secretName, byte[] secretValue) {
-
-        map.put(secretName, Base64.getEncoder().encodeToString(secretValue));
+        String encodedSecretValue = Base64.getEncoder().encodeToString(secretValue);
+        map.put(secretName, encodedSecretValue);
         Path path = Path.of(propertyResourcePath);
         if (!Files.isWritable(path)) {
             LOG.warn("Secret configuration is NOT writable: {}", path.normalize().toAbsolutePath());
@@ -58,7 +58,7 @@ public class DynamicSecretConfigurationClient implements SecretManagerClient {
                 String secretResources = Files.readString(path);
                 Properties props = new Properties();
                 props.load(new StringReader(secretResources));
-                props.put(secretName, new String(secretValue, StandardCharsets.UTF_8));
+                props.put(secretName, encodedSecretValue);
                 try (FileOutputStream out = new FileOutputStream(path.toFile())) {
                     props.store(out, null);
                 }
