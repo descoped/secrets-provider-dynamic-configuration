@@ -20,7 +20,7 @@ import static java.util.Optional.ofNullable;
 
 public class DynamicSecretConfigurationClient implements SecretManagerClient {
 
-    final Logger LOG = LoggerFactory.getLogger(DynamicSecretConfigurationClient.class);
+    static final Logger LOG = LoggerFactory.getLogger(DynamicSecretConfigurationClient.class);
     final Map<String, String> map = new ConcurrentHashMap<>();
     final String propertyResourcePath;
     final Object lock = new Object();
@@ -46,6 +46,7 @@ public class DynamicSecretConfigurationClient implements SecretManagerClient {
 
     @Override
     public String addVersion(String secretName, byte[] secretValue) {
+
         map.put(secretName, Base64.getEncoder().encodeToString(secretValue));
         Path path = Path.of(propertyResourcePath);
         if (!Files.isWritable(path)) {
