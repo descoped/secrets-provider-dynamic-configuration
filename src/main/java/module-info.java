@@ -8,6 +8,8 @@ module dapla.secrets.provider.dynamic.configuration {
 
     requires dapla.secrets.client.api;
 
+    requires org.slf4j;
+
     provides SecretManagerClientInitializer with DynamicSecretConfigurationClientInitializer;
 
     exports no.ssb.dapla.secrets.dynamic.configuration;
