@@ -16,7 +16,7 @@ public class DynamicSecretConfigurationClientInitializer implements SecretManage
         return "dynamic-secret-configuration";
     }
 
-    // Optional: "secrets.propertyResourcePath"
+    // Optional: "secrets.property-resource-path"
     @Override
     public Set<String> configurationKeys() {
         return Collections.emptySet();
@@ -24,7 +24,7 @@ public class DynamicSecretConfigurationClientInitializer implements SecretManage
 
     @Override
     public SecretManagerClient initialize(Map<String, String> configuration) {
-        String propertyResourcePath = configuration.get("secrets.propertyResourcePath");
+        String propertyResourcePath = configuration.get("secrets.property-resource-path");
         if (propertyResourcePath != null) {
             return new DynamicSecretConfigurationClient(propertyResourcePath);
         } else {

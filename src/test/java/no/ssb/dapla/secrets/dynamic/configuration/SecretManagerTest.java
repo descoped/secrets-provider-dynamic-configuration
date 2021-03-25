@@ -19,7 +19,7 @@ public class SecretManagerTest {
     public void readDynamicSecret() {
         final Map<String, String> providerConfiguration = Map.of(
                 "secrets.provider", "dynamic-secret-configuration",
-                "secrets.propertyResourcePath", "application-secret.properties"
+                "secrets.property-resource-path", "application-secret.properties"
         );
         try (SecretManagerClient client = SecretManagerClient.create(providerConfiguration)) {
             assertEquals("42", client.readString("AN_ANSWER"));
@@ -32,7 +32,7 @@ public class SecretManagerTest {
         Files.copy(Path.of("src/test/resources/application-secret.properties"), Path.of("/tmp/application-secret.properties"), StandardCopyOption.REPLACE_EXISTING);
         final Map<String, String> providerConfiguration = Map.of(
                 "secrets.provider", "dynamic-secret-configuration",
-                "secrets.propertyResourcePath", "/tmp/application-secret.properties"
+                "secrets.property-resource-path", "/tmp/application-secret.properties"
         );
         try (SecretManagerClient client = SecretManagerClient.create(providerConfiguration)) {
             assertEquals("latest", client.addVersion("question", "42".getBytes(StandardCharsets.UTF_8)));
