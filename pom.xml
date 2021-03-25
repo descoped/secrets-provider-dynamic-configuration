@@ -4,7 +4,7 @@
 
     <groupId>no.ssb.dapla.secrets</groupId>
     <artifactId>dapla-secrets-provider-dynamic-configuration</artifactId>
-    <version>0.5.1-SNAPSHOT</version>
+    <version>0.6.0</version>
     <packaging>jar</packaging>
 
     <name>Dapla Secrets Provider Dynamic Configuration</name>
@@ -40,7 +40,7 @@
         <developerConnection>scm:git:git@github.com:statisticsnorway/dapla-secrets-provider-dynamic-configuration.git
         </developerConnection>
         <url>https://github.com/statisticsnorway/dapla-secrets-provider-dynamic-configuration/tree/master</url>
-        <tag>HEAD</tag>
+        <tag>dapla-secrets-provider-dynamic-configuration-0.6.0</tag>
     </scm>
 
     <dependencies>
