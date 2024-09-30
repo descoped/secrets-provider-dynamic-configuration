@@ -1,12 +1,11 @@
 import no.ssb.dapla.secrets.api.SecretManagerClientInitializer;
-import no.ssb.dapla.secrets.dynamic.configuration.DynamicSecretConfigurationClientInitializer;
 
-module dapla.secrets.provider.dynamic.configuration {
+module secrets.provider.dynamic.configuration {
 
-    requires no.ssb.service.provider.api;
-    requires no.ssb.config;
+    requires io.descoped.service.provider.api;
+    requires io.descoped.dynamic.config;
 
-    requires dapla.secrets.client.api;
+    requires secrets.client.api;
 
     requires org.slf4j;
 

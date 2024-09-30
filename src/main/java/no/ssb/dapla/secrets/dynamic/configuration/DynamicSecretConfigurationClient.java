@@ -1,6 +1,6 @@
 package no.ssb.dapla.secrets.dynamic.configuration;
 
-import no.ssb.config.StoreBasedDynamicConfiguration;
+import io.descoped.config.StoreBasedDynamicConfiguration;
 import no.ssb.dapla.secrets.api.SecretManagerClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
