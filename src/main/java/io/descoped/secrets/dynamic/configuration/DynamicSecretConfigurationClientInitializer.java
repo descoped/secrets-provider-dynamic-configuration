@@ -1,8 +1,8 @@
-package no.ssb.dapla.secrets.dynamic.configuration;
+package io.descoped.secrets.dynamic.configuration;
 
+import io.descoped.secrets.api.SecretManagerClient;
+import io.descoped.secrets.api.SecretManagerClientInitializer;
 import io.descoped.service.provider.api.ProviderName;
-import no.ssb.dapla.secrets.api.SecretManagerClient;
-import no.ssb.dapla.secrets.api.SecretManagerClientInitializer;
 
 import java.util.Collections;
 import java.util.Map;

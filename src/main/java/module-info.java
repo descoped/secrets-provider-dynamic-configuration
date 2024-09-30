@@ -1,4 +1,4 @@
-import no.ssb.dapla.secrets.api.SecretManagerClientInitializer;
+import io.descoped.secrets.api.SecretManagerClientInitializer;
 
 module secrets.provider.dynamic.configuration {
 
@@ -9,8 +9,8 @@ module secrets.provider.dynamic.configuration {
 
     requires org.slf4j;
 
-    provides SecretManagerClientInitializer with no.ssb.dapla.secrets.dynamic.configuration.DynamicSecretConfigurationClientInitializer;
+    provides SecretManagerClientInitializer with io.descoped.secrets.dynamic.configuration.DynamicSecretConfigurationClientInitializer;
 
-    exports no.ssb.dapla.secrets.dynamic.configuration;
+    exports io.descoped.secrets.dynamic.configuration;
 
 }
