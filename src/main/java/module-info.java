@@ -9,7 +9,7 @@ module secrets.provider.dynamic.configuration {
 
     requires org.slf4j;
 
-    provides SecretManagerClientInitializer with DynamicSecretConfigurationClientInitializer;
+    provides SecretManagerClientInitializer with no.ssb.dapla.secrets.dynamic.configuration.DynamicSecretConfigurationClientInitializer;
 
     exports no.ssb.dapla.secrets.dynamic.configuration;
 
